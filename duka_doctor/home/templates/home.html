@@ -1,0 +1,811 @@
+{% extends "base.html" %}
+{% load static %}
+{% block body %}
+
+<style>
+.btn-readmore {
+  background-color: #06b6d4;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.btn-readmore:hover {
+  background-color: #04889c;
+}
+</style>
+
+
+
+<main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+
+      <div id="hero-carousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+
+        {% for rs in slider %}
+
+        <div class="carousel-item active">
+          <img src="{{rs.image.url}}" alt="">
+          <div class="container">
+            <h2>{{rs.title}}</h2>
+            <p>{{rs.description}}</p>
+            <a href="#about" class="btn-get-started">Read More</a>
+          </div>
+        </div><!-- End Carousel Item -->
+
+        {% endfor %}
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        <ol class="carousel-indicators"></ol>
+
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- Featured Services Section -->
+    <section id="featured-services" class="featured-services section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+            {% for rs in usp %}
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item position-relative">
+              <div class="icon"><i class="fas fa-square-check"></i></div>
+              <h4><a href="" class="stretched-link">{{rs.title}}</a></h4>
+              <p>{{rs.description}}</p>
+            </div>
+          </div><!-- End Service Item -->
+          
+          {% endfor %}
+
+
+        </div>
+
+      </div>
+
+    </section><!-- /Featured Services Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section accent-background">
+
+      <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+                {% for rs in emergencysection %}
+            <div class="text-center">
+              <h3>{{rs.title}}</h3>
+              <p>{{rs.description}}</p>
+              <a class="cta-btn" href="#appointment">Make an Appointment</a>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>About Us<br></h2>
+        <p>Dedicated to Healing, Innovation, and Patient-Centered Care.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        {% for rs in  about %}
+        <div class="row gy-4">
+          <div class="col-lg-6 position-relative align-self-start" data-aos="fade-up" data-aos-delay="100">
+            <img src="{{ rs.Image.url }}" class="img-fluid" alt="" style="width: 700px; height: 500px;">
+            <a href="{{rs.video_url}}" class="glightbox pulsating-play-btn"></a>
+          </div>
+          <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="200">
+            <h3>{{rs.Title}}</h3>
+            <p class="fst-italic">
+            {{rs.description}}
+            </p>
+
+            <!-- Read More Button -->
+             <a href="#">
+            <button id="readMoreBtn" class="btn-readmore">Read More</button>
+           </a>
+          </div>
+        </div>
+          {% endfor %}
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+            {% for rs in about %}
+            <div class="row gy-4">
+
+              <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                  <i class="fas fa-user-md flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ rs.Doctors|default:0 }}" data-purecounter-duration="{{ forloop.counter|default:2 }}" class="purecounter"></span>
+                    <p>Doctors</p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                  <i class="far fa-hospital flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ rs.Departments|default:0 }}" data-purecounter-duration="{{ forloop.counter|default:2 }}" class="purecounter"></span>
+                    <p>Departments</p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                  <i class="fas fa-flask flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ rs.Research_labs|default:0 }}" data-purecounter-duration="{{ forloop.counter|default:2 }}" class="purecounter"></span>
+                    <p>Research Labs</p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-3 col-md-6">
+                <div class="stats-item d-flex align-items-center w-100 h-100">
+                  <i class="fas fa-award flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="{{ rs.Awards|default:0 }}" data-purecounter-duration="{{ forloop.counter|default:2 }}" class="purecounter"></span>
+                    <p>Awards</p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+            </div>
+            {% endfor %}
+      </div>
+
+    </section><!-- /Stats Section -->
+
+         <!-- Features Section -->
+          <section id="features" class="features section">
+
+            <div class="container">
+
+              <div class="row justify-content-around gy-4">
+                <div class="features-image col-lg-6" data-aos="fade-up" data-aos-delay="100"><img src="{% static '' %}assets/img/features.jpg" alt=""></div>
+
+                <div class="col-lg-5 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
+
+                      {% for rs in why_choose %}
+                  <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-square-check flex-shrink-0"></i>
+                    <div>
+                      <h4><a href="" class="stretched-link">{{rs.title}}</a></h4>
+                      <p>{{rs.description}}</p>
+                    </div>
+
+                    
+                  </div><!-- End Icon Box -->
+                  {% endfor %}   
+  
+
+                </div>
+              </div>
+
+            </div>
+
+          </section><!-- /Features Section -->
+
+    
+    
+          <!-- Services Section -->
+          <section id="services" class="services section">
+
+            <!-- Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+              <h2>Services</h2>
+              <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+              <div class="row gy-4">
+                {% for rs in services %}
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                  <div class="service-item  position-relative">
+                    <div class="icon">
+                      <i class="fas fa-square-check"></i>
+                    </div>
+                    <a href="#" class="stretched-link">
+                      <h3>{{rs.title}}</h3>
+                    </a>
+                    <p>{{rs.description}}</p>
+                  </div>
+                </div><!-- End Service Item -->
+                  {% endfor %}
+              </div>
+
+            </div>
+
+          </section><!-- /Services Section -->
+
+        <!-- Appointment Section -->
+        <section id="appointment" class="appointment section light-background">
+
+          <!-- Section Title -->
+          <div class="container section-title" data-aos="fade-up">
+            <h2>MAKE AN APPOINTMENT</h2>
+            <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+          </div><!-- End Section Title -->
+
+          <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+            <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-4 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3 mt-md-0">
+                  <input type="tel" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4 form-group mt-3">
+                  <input type="datetime-local" name="date" class="form-control datepicker" id="date" placeholder="Appointment Date" required="">
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                  <select name="department" id="department" class="form-select" required="">
+                    <option value="">Select Department</option>
+                    <option value="Department 1">Department 1</option>
+                    <option value="Department 2">Department 2</option>
+                    <option value="Department 3">Department 3</option>
+                  </select>
+                </div>
+                <div class="col-md-4 form-group mt-3">
+                  <select name="doctor" id="doctor" class="form-select" required="">
+                    <option value="">Select Doctor</option>
+                    <option value="Doctor 1">Doctor 1</option>
+                    <option value="Doctor 2">Doctor 2</option>
+                    <option value="Doctor 3">Doctor 3</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+              </div>
+              <div class="mt-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your appointment request has been sent successfully. Thank you!</div>
+                <div class="text-center"><button type="submit">Make an Appointment</button></div>
+              </div>
+            </form>
+
+          </div>
+
+        </section><!-- /Appointment Section -->
+
+
+      <!-- Tabs Section -->
+      <section id="departments" class="tabs section">
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Departments</h2>
+          <p>Specialized departments with expert doctors and advanced care for every patient.</p>
+        </div><!-- End Section Title -->
+
+        <div class="container" data-aos="fade-up" data-aos-delay="100">
+          <div class="row">
+            <!-- NAV (left column) -->
+            <div class="col-lg-3">
+              <ul class="nav nav-tabs flex-column" role="tablist">
+                {% for rs in departments %}
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link {% if forloop.first %}active show{% endif %}"id="tab-{{ forloop.counter }}-tab" data-bs-toggle="tab" href="#tab-{{ forloop.counter }}" role="tab" aria-controls="tab-{{ forloop.counter }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}">
+                      {{ rs.title }}
+                    </a>
+                  </li>
+                {% empty %}
+                  <li class="nav-item">
+                    <a class="nav-link active show">No departments found</a>
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <!-- TAB CONTENT (right column) -->
+            <div class="col-lg-9 mt-4 mt-lg-0">
+              <div class="tab-content">
+                {% for rs in departments %}
+                  <div class="tab-pane fade {% if forloop.first %}active show{% endif %}" id="tab-{{ forloop.counter }}" role="tabpanel" aria-labelledby="tab-{{ forloop.counter }}-tab">
+                    <div class="row">
+                      <div class="col-lg-8 details order-2 order-lg-1">
+                        <h3>{{ rs.title }}</h3>
+                        <p class="fst-italic">{{ rs.description }}</p>
+                      </div>
+                      <div class="col-lg-4 text-center order-1 order-lg-2">
+                        {% if rs.image %}
+                          <img src="{{ rs.image.url }}" alt="{{ rs.title }}" class="img-fluid" style="width: 300px; height: 250px;">
+                        {% else %}
+                          <img src="{% static 'assets/img/departments-1.jpg' %}" alt="{{ rs.title }}" class="img-fluid" >
+                        {% endif %}
+                      </div>
+                    </div>
+                  </div>
+                {% empty %}
+                  <div class="tab-pane active show">
+                    <p>No departments available right now.</p>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+                <div class="text-center mt-4">
+              <a href="#" class="btn btn-primary px-4 py-2">
+                See All Departments
+              </a>
+          </div>
+            
+          </div>
+
+       
+
+        </div>
+      </section><!-- /Tabs Section -->
+
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Testimonials</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper" data-speed="600" data-delay="5000" data-breakpoints="{ &quot;320&quot;: { &quot;slidesPerView&quot;: 1, &quot;spaceBetween&quot;: 40 }, &quot;1200&quot;: { &quot;slidesPerView&quot;: 3, &quot;spaceBetween&quot;: 40 } }">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 40
+                },
+                "1200": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 20
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+              <div class="testimonial-item" "="">
+            <p>
+              <i class=" bi bi-quote quote-icon-left"></i>
+                <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
+                <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="{% static '' %}assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                <h3>Saul Goodman</h3>
+                <h4>Ceo &amp; Founder</h4>
+              </div>
+            </div>
+            <!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="{% static '' %}assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                <h3>Sara Wilsson</h3>
+                <h4>Designer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="{% static '' %}assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+                <h3>Jena Karlis</h3>
+                <h4>Store Owner</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="{% static '' %}assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+                <h3>Matt Brandon</h3>
+                <h4>Freelancer</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+            <div class="swiper-slide">
+              <div class="testimonial-item">
+                <p>
+                  <i class="bi bi-quote quote-icon-left"></i>
+                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
+                  <i class="bi bi-quote quote-icon-right"></i>
+                </p>
+                <img src="{% static '' %}assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+                <h3>John Larson</h3>
+                <h4>Entrepreneur</h4>
+              </div>
+            </div><!-- End testimonial item -->
+
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Testimonials Section -->
+
+    <!-- Doctors Section -->
+    <section id="doctors" class="doctors section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Doctors</h2>
+        <p>Experienced and compassionate specialists dedicated to providing advanced medical care with a personal touch.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+            {% for rs in doctor %}
+          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
+            <div class="team-member">
+              <div class="member-img">
+                <img src="{{rs.image.url}}" class="img-fluid" alt="" style="width: 600px; height: 400px;">
+                <div class="social">
+                  <a href="{{twitter}}"><i class="bi bi-twitter-x"></i></a>
+                  <a href="{{facebook}}"><i class="bi bi-facebook"></i></a>
+                  <a href="{{instagram}}"><i class="bi bi-instagram"></i></a>
+                  <a href="{{linkedin}}"><i class="bi bi-linkedin"></i></a>
+                </div>
+              </div>
+              <div class="member-info">
+                <h4>{{rs.title}}</h4>
+                <span>{{rs.department}}</span>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+          {% endfor %}
+
+        </div>
+
+        <!-- In a Django template (e.g., templates/home/index.html) -->
+      <div class="text-center mt-6">
+        <a href="doctors_list" class="text-blue-600 font-semibold hover:underline hover:text-blue-800 transition-colors duration-200">
+          <i class="fas fa-user-md"></i> See All Doctors
+        </a>
+      </div>
+
+
+      </div>
+
+    </section><!-- /Doctors Section -->
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Gallery</h2>
+        <p>Explore moments from our hospital showcasing expert care, modern facilities, and patient trust.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 600,
+              "autoplay": {
+                "delay": 5000
+              },
+              "slidesPerView": "auto",
+              "centeredSlides": true,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "breakpoints": {
+                "320": {
+                  "slidesPerView": 1,
+                  "spaceBetween": 0
+                },
+                "768": {
+                  "slidesPerView": 3,
+                  "spaceBetween": 20
+                },
+                "1200": {
+                  "slidesPerView": 5,
+                  "spaceBetween": 20
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper align-items-center">
+            {% for rs in gallery %}
+            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="{{rs.image.url}}"><img style="width:100%; height:250px; object-fit:cover; border-radius:10px;" src="{{rs.image.url}} " class="img-fluid" alt=""></a></div>
+              {% endfor %}
+            </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
+      </div>
+
+    </section><!-- /Gallery Section -->
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Pricing</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-3">
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Free</h3>
+              <h4><sup>$</sup>0<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li class="na">Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="pricing-item featured">
+              <h3>Business</h3>
+              <h4><sup>$</sup>19<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li class="na">Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="pricing-item">
+              <h3>Developer</h3>
+              <h4><sup>$</sup>29<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-xl-3 col-lg-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="pricing-item">
+              <span class="advanced">Advanced</span>
+              <h3>Ultimate</h3>
+              <h4><sup>$</sup>49<span> / month</span></h4>
+              <ul>
+                <li>Aida dere</li>
+                <li>Nec feugiat nisl</li>
+                <li>Nulla at volutpat dola</li>
+                <li>Pharetra massa</li>
+                <li>Massa ultricies mi</li>
+              </ul>
+              <div class="btn-wrap">
+                <a href="#" class="btn-buy">Buy Now</a>
+              </div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section light-background">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row justify-content-center">
+
+          <div class="col-lg-10" data-aos="fade-up" data-aos-delay="100">
+
+            <div class="faq-container">
+
+
+               {% for rs in faq %}
+              <div class="faq-item">
+                <h3>{{rs.Question}}</h3>
+                <div class="faq-content">
+                  <p>{{rs.Answer}}</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+                {% endfor %}
+
+            </div>
+
+          </div><!-- End Faq Column-->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    <!-- Contact Section -->
+        {% for rs in setting %}
+
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+      </div><!-- End Section Title -->
+
+      <div class="mb-5" data-aos="fade-up" data-aos-delay="200">
+        {{rs.google_map.url}}
+      </div><!-- End Google Maps -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4">
+          <div class="col-lg-6 ">
+            <div class="row gy-4">
+
+              <div class="col-lg-12">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+                  <i class="bi bi-geo-alt"></i>
+                  <h3>Address</h3>
+                  <p>{{rs.address}}</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+                  <i class="bi bi-telephone"></i>
+                  <h3>Call Us</h3>
+                  <p>+91 {{rs.phone}}</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="col-md-6">
+                <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="400">
+                  <i class="bi bi-envelope"></i>
+                  <h3>Email Us</h3>
+                  <p>{{rs.email}}</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+
+                  <button type="submit">Send Message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+      </div>
+
+    </section>
+        {% endfor %}
+
+    <!-- /Contact Section -->
+
+</main>
+
+
+{% endblock body %}
