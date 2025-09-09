@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 # Create your models here.
 
 
@@ -142,3 +143,30 @@ class Setting(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class Appointment(models.Model):
+    STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('confirmed', 'Confirmed'),
+        ('cancelled', 'Cancelled'),
+    ]
+
+    name = models.CharField(max_length=200)
+    email = models.EmailField()
+    phone = models.CharField(max_length=30)
+    date = models.DateTimeField()
+    department = models.ForeignKey('Departments', on_delete=models.SET_NULL, null=True, blank=True, related_name='appointments')
+    doctor = models.ForeignKey('Doctor', on_delete=models.SET_NULL, null=True, blank=True, related_name='appointments')
+    message = models.TextField(blank=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='pending')
+    created_at = models.DateTimeField(default=timezone.now)
+
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Appointment'
+        verbose_name_plural = 'Appointments'
+
+    def __str__(self):
+        return f"{self.name} — {self.date.strftime('%Y-%m-%d %H:%M')}"    

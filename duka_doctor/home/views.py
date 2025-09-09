@@ -36,3 +36,8 @@ def index(request):
 
 
     return render(request,'home.html',context)
+
+
+
+def APPOINTMENT_THANKYOU(request):
+    return render(request, 'appointment_thanks.html')

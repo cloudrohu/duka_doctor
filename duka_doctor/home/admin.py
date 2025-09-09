@@ -111,7 +111,12 @@ class FAQAdmin(admin.ModelAdmin):
 
 
 class SettingAdmin(admin.ModelAdmin):
-    list_display = ['title', 'update_at','status']
+    list_display = ['title', 'update_at']
+
+
+
+
+
 
 admin.site.register(EmergencySection,EmergencySectionAdmin)
 admin.site.register(Departments,DepartmentsAdmin)
