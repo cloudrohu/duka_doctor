@@ -94,7 +94,7 @@ class Doctor(models.Model):
     
 
 
-class Gallery(models.Model):
+class MediaGallery(models.Model):
     image = models.ImageField(upload_to='gallery/')
     title = models.CharField(max_length=150, blank=True)    
 

@@ -9,7 +9,7 @@ def index(request):
     why_choose = Why_Choose.objects.all().order_by('-id')[0:3]
     services = Services.objects.all().order_by('-id')[0:6]
     setting = Setting.objects.all().order_by('-id')[0:1]
-    gallery = Gallery.objects.all().order_by('-id')[0:30]
+    gallery = MediaGallery.objects.all().order_by('-id')[0:30]
     doctor = Doctor.objects.all().order_by('-id')[0:4]
     slider = Slider.objects.all().order_by('-id')[0:6]
     about = About.objects.all().order_by('-id')[0:1]

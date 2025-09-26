@@ -83,7 +83,7 @@ class DoctorAdmin(admin.ModelAdmin):
     list_display_links = ('title',)
 
 
-class GalleryAdmin(admin.ModelAdmin):
+class MediaGalleryAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'preview')
 
     # Short description for admin list
@@ -123,7 +123,7 @@ admin.site.register(Departments,DepartmentsAdmin)
 admin.site.register(Why_Choose,Why_ChooseAdmin)
 admin.site.register(Services,ServicesAdmin)
 admin.site.register(Setting,SettingAdmin)
-admin.site.register(Gallery,GalleryAdmin)
+admin.site.register(MediaGallery,MediaGalleryAdmin)
 admin.site.register(Doctor,DoctorAdmin)
 admin.site.register(Slider,SliderAdmin)
 admin.site.register(About, AboutAdmin)
